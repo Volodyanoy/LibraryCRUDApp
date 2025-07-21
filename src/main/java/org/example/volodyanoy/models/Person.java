@@ -1,11 +1,24 @@
 package org.example.volodyanoy.models;
 
+
+
+import javax.validation.constraints.*;
+
 public class Person {
     private int id;
-    private String name;
-    private int yearOfBirth;
 
-    public Person(int id, String name, int yearOfBirth) {
+    @NotEmpty(message="Name should not be empty")
+    @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
+    private String name;
+
+    @NotNull(message = "Year of birth should not be empty")
+    @Min(value = 1900, message = "Year of birth should be greater than 1900")
+    @Max(value = 2026, message = "Year of birth should be less than 2026")
+    private Integer yearOfBirth;
+
+    public Person(){}
+
+    public Person(int id, String name, Integer yearOfBirth) {
         this.id = id;
         this.name = name;
         this.yearOfBirth = yearOfBirth;
@@ -27,11 +40,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getYearOfBirth() {
+    public Integer getYearOfBirth() {
         return yearOfBirth;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
+    public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 }
