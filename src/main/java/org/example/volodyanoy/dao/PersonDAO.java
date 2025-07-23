@@ -52,5 +52,13 @@ public class PersonDAO {
     public void delete(int id){
         jdbcTemplate.update("DELETE FROM Person WHERE person_id=?", id);
     }
+    // input id = book_id
+    public Person showOwnerOfBook(int id){
+        return jdbcTemplate.query("SELECT person.person_id, name, yearofbirth\n" +
+                "FROM person inner join book on person.person_id = book.person_id\n" +
+                "WHERE book.book_id = ?", new Object[]{id}, new PersonMapper()).stream().findAny().orElse(null);
+    }
+
+
 
 }

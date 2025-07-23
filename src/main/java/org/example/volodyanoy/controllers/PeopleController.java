@@ -1,5 +1,6 @@
 package org.example.volodyanoy.controllers;
 
+import org.example.volodyanoy.dao.BookDAO;
 import org.example.volodyanoy.dao.PersonDAO;
 import org.example.volodyanoy.models.Person;
 import org.example.volodyanoy.util.PersonValidator;
@@ -18,11 +19,13 @@ public class PeopleController {
 
     private final PersonDAO personDAO;
     private final PersonValidator personValidator;
+    private final BookDAO bookDAO;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
+    public PeopleController(PersonDAO personDAO, PersonValidator personValidator, BookDAO bookDAO) {
         this.personDAO = personDAO;
         this.personValidator = personValidator;
+        this.bookDAO = bookDAO;
     }
 
     @GetMapping()
@@ -36,6 +39,8 @@ public class PeopleController {
     public String show(@PathVariable("id") int id, Model model){
         //Получим одного человека по id из DAO и передадим в views
         model.addAttribute("person", personDAO.show(id));
+        //Получим список книг, которые взял этот человек
+        model.addAttribute("books", bookDAO.showBooksInPersonPossession(id));
 
         return "people/show";
     }

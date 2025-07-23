@@ -1,7 +1,9 @@
 package org.example.volodyanoy.controllers;
 
 import org.example.volodyanoy.dao.BookDAO;
+import org.example.volodyanoy.dao.PersonDAO;
 import org.example.volodyanoy.models.Book;
+import org.example.volodyanoy.models.Person;
 import org.example.volodyanoy.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,17 +12,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
     private final BookDAO bookDAO;
     private final BookValidator bookValidator;
+    private final PersonDAO personDAO;
 
     @Autowired
-    public BooksController(BookDAO bookDAO, BookValidator bookValidator) {
+    public BooksController(BookDAO bookDAO, BookValidator bookValidator, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
         this.bookValidator = bookValidator;
+        this.personDAO = personDAO;
     }
 
     @GetMapping()
@@ -31,10 +36,13 @@ public class BooksController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
+    public String show(@PathVariable("id") int id, @ModelAttribute("person") Person person, Model model){
         //Получим одну книгу по id из DAO и передадим в views
         model.addAttribute("book", bookDAO.show(id));
-
+        //Получим владельца книги
+        model.addAttribute("personOwnerOfBook", personDAO.showOwnerOfBook(id));
+        //Получим всех людей для выпадающего списка
+        model.addAttribute("people", personDAO.index());
         return "books/show";
     }
 
@@ -77,6 +85,18 @@ public class BooksController {
     public String delete(@PathVariable("id") int id){
         bookDAO.delete(id);
         return "redirect:/books";
+    }
+
+    @PatchMapping("/release/{id}")
+    public String release(@PathVariable("id") int id){
+        bookDAO.releaseBook(id);
+        return "redirect:/books/" + id;
+    }
+
+    @PatchMapping("/assign/{id}")
+    public String assign(@PathVariable("id") int id, @ModelAttribute("person") Person person){
+        bookDAO.assignBook(id, person.getId());
+        return "redirect:/books/" + id;
     }
 
 

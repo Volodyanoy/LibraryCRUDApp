@@ -1,6 +1,7 @@
 package org.example.volodyanoy.dao;
 
 import org.example.volodyanoy.models.Book;
+import org.example.volodyanoy.models.Person;
 import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -51,6 +52,21 @@ public class BookDAO {
 
     public void delete(int id){
         jdbcTemplate.update("DELETE FROM Book WHERE book_id=?", id);
+    }
+
+    //input id = person_id
+    public List<Book> showBooksInPersonPossession(int id){
+        return jdbcTemplate.query("SELECT book_id, title, author, yearofwriting\n" +
+                "FROM book inner join person ON book.person_id = person.person_id\n" +
+                "WHERE book.person_id = ?", new Object[]{id}, new BookMapper());
+    }
+
+    public void releaseBook(int id){
+        jdbcTemplate.update("UPDATE Book SET person_id = NULL WHERE book_id = ?", id);
+    }
+
+    public void assignBook(int book_id, int person_id){
+        jdbcTemplate.update("UPDATE Book SET person_id = ? WHERE book_id = ?", person_id, book_id);
     }
 
 }
