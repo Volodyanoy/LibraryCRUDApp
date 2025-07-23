@@ -57,7 +57,7 @@ public class BookDAO {
     //input id = person_id
     public List<Book> showBooksInPersonPossession(int id){
         return jdbcTemplate.query("SELECT book_id, title, author, yearofwriting\n" +
-                "FROM book inner join person ON book.person_id = person.person_id\n" +
+                "FROM book \n" +
                 "WHERE book.person_id = ?", new Object[]{id}, new BookMapper());
     }
 
