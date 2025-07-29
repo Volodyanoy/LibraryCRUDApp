@@ -1,27 +1,41 @@
 package org.example.volodyanoy.models;
 
+
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
+@Entity
+@Table(name = "Book")
 public class Book {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
+    @Column(name = "title")
     @NotEmpty
     @Size(min = 2, max = 50, message = "Title should be between 2 and 50 characters")
     private String title;
-    
+
+    @Column(name = "author")
     @NotEmpty
     @Size(min = 2, max = 50, message = "Name author should be between 2 and 50 characters")
     private String author;
-    
+
+    @Column(name = "year_of_writing")
     @NotNull
     @Min(value = 1700, message = "Year of birth should be greater than 1700")
     @Max(value = 2026, message = "Year of birth should be less than 2026")
     private Integer yearOfWriting;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person owner;
     
     public Book(){}
 
-    public Book(int id, String title, String author, Integer yearOfWriting){
-        this.id = id;
+    public Book(String title, String author, Integer yearOfWriting){
         this.title = title;
         this.author = author;
         this.yearOfWriting = yearOfWriting;
@@ -58,4 +72,13 @@ public class Book {
     public void setYearOfWriting(Integer yearOfWriting) {
         this.yearOfWriting = yearOfWriting;
     }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
+
 }

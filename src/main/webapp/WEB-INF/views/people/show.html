@@ -16,7 +16,7 @@
     </div>
 </div>
 <!-- Если список books пустой -->
-<div th:unless="${not #lists.isEmpty(books)}">
+<div th:if="${#lists.isEmpty(books)}">
     <p>Человек пока не взял ни одной книги</p>
 </div>
 
