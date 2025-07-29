@@ -33,11 +33,29 @@ public class BooksController {
         this.booksService = booksService;
         this.peopleService = peopleService;
     }
-
+    //sort_by_year
+    // page и books_per_page
     @GetMapping()
-    public String index(Model model){
-        //Получим все книги и передадим в views
-        model.addAttribute("books", booksService.findAll());
+    public String index(Model model,
+                        @RequestParam(value = "sort_by_year", required = false, defaultValue = "false") Boolean sortByYear,
+                        @RequestParam(value = "page", required = false) Integer page,
+                        @RequestParam(value = "books_per_page", required = false) Integer booksPerPage){
+
+        if(page != null && booksPerPage != null){
+            if(sortByYear){
+                model.addAttribute("books", booksService.findAllAndSortByYearOfWritingAndPagination(page, booksPerPage));
+            }
+            else {
+                model.addAttribute("books", booksService.findAllAndPagination(page, booksPerPage));
+            }
+        }
+        else if(sortByYear){
+            model.addAttribute("books", booksService.findAllAndSortByYearOfWriting());
+        }
+        else {
+            model.addAttribute("books", booksService.findAll());
+        }
+
         return "books/index";
     }
 

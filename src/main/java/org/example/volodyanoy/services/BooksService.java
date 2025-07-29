@@ -5,6 +5,8 @@ import org.example.volodyanoy.models.Person;
 import org.example.volodyanoy.repositories.BooksRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,18 @@ public class BooksService {
 
     public List<Book> findAll(){
         return booksRepository.findAll();
+    }
+
+    public List<Book> findAllAndSortByYearOfWriting(){
+        return booksRepository.findAll(Sort.by("yearOfWriting"));
+    }
+
+    public List<Book> findAllAndPagination(Integer page, Integer booksPerPage){
+        return booksRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+    }
+
+    public List<Book> findAllAndSortByYearOfWritingAndPagination(Integer page, Integer booksPerPage){
+        return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("yearOfWriting"))).getContent();
     }
 
     public Book findOne(int id){
