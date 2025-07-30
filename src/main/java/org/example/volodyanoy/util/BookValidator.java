@@ -25,9 +25,9 @@ public class BookValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Book book = (Book) o;
 
-        if(bookDAO.show(book.getTitle(), book.getAuthor(), book.getYearOfWriting()).isPresent()){
+/*        if(bookDAO.show(book.getTitle(), book.getAuthor(), book.getYearOfWriting()).isPresent()){
             errors.rejectValue("title", "", "This title, author and year of writing is already taken (Такая книга уже существует!)");
-        }
+        }*/
 
     }
 }

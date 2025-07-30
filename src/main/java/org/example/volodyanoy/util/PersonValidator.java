@@ -25,9 +25,9 @@ public class PersonValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Person person = (Person) o;
 
-        if(personDAO.show(person.getName(), person.getYearOfBirth()).isPresent()){
+/*        if(personDAO.show(person.getName(), person.getYearOfBirth()).isPresent()){
             errors.rejectValue("name", "", "This name and year of birth is already taken (Такой пользователь уже существует!)");
-        }
+        }*/
 
     }
 }
