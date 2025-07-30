@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +42,11 @@ public class BooksService {
         return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("yearOfWriting"))).getContent();
     }
 
+    public List<Book> findBooksByTitle(String searchQuery){
+        return booksRepository.findByTitleStartingWith(searchQuery);
+
+    }
+
     public Book findOne(int id){
         Optional<Book> foundBook = booksRepository.findById(id);
         return foundBook.orElse(null);
@@ -59,6 +65,7 @@ public class BooksService {
 
     @Transactional
     public void delete(int id){
+
         booksRepository.deleteById(id);
     }
 

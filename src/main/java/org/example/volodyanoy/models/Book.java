@@ -1,8 +1,13 @@
 package org.example.volodyanoy.models;
 
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 @Entity
 @Table(name = "Book")
@@ -32,6 +37,12 @@ public class Book {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
+
+    @Column(name = "date_of_book_assignment")
+    private LocalDateTime dateOfBookAssignment;
+
+    @Transient
+    boolean isOverdue;
     
     public Book(){}
 
@@ -41,12 +52,26 @@ public class Book {
         this.yearOfWriting = yearOfWriting;
     }
 
+    public boolean isOverdue(){
+        if(dateOfBookAssignment == null)
+            return false;
+        return ChronoUnit.DAYS.between(dateOfBookAssignment, LocalDateTime.now()) > 10;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public LocalDateTime getDateOfBookAssignment() {
+        return dateOfBookAssignment;
+    }
+
+    public void setDateOfBookAssignment(LocalDateTime dateOfBookAssignment) {
+        this.dateOfBookAssignment = dateOfBookAssignment;
     }
 
     public String getTitle() {

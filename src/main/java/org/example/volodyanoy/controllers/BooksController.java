@@ -123,5 +123,19 @@ public class BooksController {
         return "redirect:/books/" + id;
     }
 
+    @GetMapping("/search")
+    public String search(Model model, @RequestParam(value = "query", required = false) String searchQuery){
+        boolean searchFlag = false;
+        if(searchQuery != null && !searchQuery.isEmpty()){
+            model.addAttribute("books", booksService.findBooksByTitle(searchQuery));
+            searchFlag = true;
+        }
+        model.addAttribute("searchFlag", searchFlag);
+
+        return "/books/search";
+    }
+
+
+
 
 }

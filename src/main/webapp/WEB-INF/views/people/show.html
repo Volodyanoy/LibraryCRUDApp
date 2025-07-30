@@ -11,7 +11,8 @@
     <hr/>
     <p><strong>Книги:</strong></p>
     <div th:each="book : ${books}">
-        <a th:href="@{/books/{id}(id=${book.getId()})}"
+        <a th:style = "${book.isOverdue} ? 'color: red' : 'color:black' "
+           th:href="@{/books/{id}(id=${book.getId()})}"
            th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYearOfWriting()}">book</a>
     </div>
 </div>

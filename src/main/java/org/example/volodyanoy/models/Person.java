@@ -4,7 +4,9 @@ package org.example.volodyanoy.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -70,12 +72,14 @@ public class Person {
     }
 
     public void addBook(Book book){
-        books.add(book);
+        book.setDateOfBookAssignment(LocalDateTime.now());
         book.setOwner(this);
+        books.add(book);
     }
 
     public void removeBook(Book book){
-        books.remove(book);
+        book.setDateOfBookAssignment(null);
         book.setOwner(null);
+        books.remove(book);
     }
 }

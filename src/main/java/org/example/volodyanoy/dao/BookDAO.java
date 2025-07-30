@@ -12,17 +12,7 @@ import javax.persistence.EntityManager;
 
 @Component
 public class BookDAO {
- /*   private final EntityManager entityManager;
 
-    @Autowired
-    public BookDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    // Здесь будут лежать специфические запросы к БД (с помощью SQL)
 
-
-    @Transactional(readOnly = true)
-    public void test(){
-        Session session = entityManager.unwrap(Session.class);
-        Person person = session.get(Person.class, 2);
-    }*/
 }

@@ -44,6 +44,11 @@ public class PeopleService {
 
     @Transactional
     public void delete(int id){
+        List<Book> books = getBooksInPersonPossession(id);
+        for(Book book: books){
+            book.setOwner(null);
+            book.setDateOfBookAssignment(null);
+        }
         peopleRepository.deleteById(id);
     }
 

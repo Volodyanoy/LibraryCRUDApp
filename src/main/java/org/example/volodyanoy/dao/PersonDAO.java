@@ -8,16 +8,6 @@ import javax.persistence.EntityManager;
 
 @Component
 public class PersonDAO {
- /*   private final EntityManager entityManager;
 
-    @Autowired
-    public PersonDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    @Transactional(readOnly = true)
-    public void test(){
-        Session session = entityManager.unwrap(Session.class);
-        Person person = session.get(Person.class, 2);
-    }*/
+    // Здесь будут лежать специфические запросы к БД (с помощью SQL)
 }
