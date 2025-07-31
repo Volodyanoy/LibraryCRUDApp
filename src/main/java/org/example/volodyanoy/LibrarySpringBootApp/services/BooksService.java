@@ -1,17 +1,14 @@
-package org.example.volodyanoy.services;
+package org.example.volodyanoy.LibrarySpringBootApp.services;
 
-import org.example.volodyanoy.models.Book;
-import org.example.volodyanoy.models.Person;
-import org.example.volodyanoy.repositories.BooksRepository;
-import org.hibernate.Session;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Book;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Person;
+import org.example.volodyanoy.LibrarySpringBootApp.repositories.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,12 +1,13 @@
-package org.example.volodyanoy.models;
+package org.example.volodyanoy.LibrarySpringBootApp.models;
 
 
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity

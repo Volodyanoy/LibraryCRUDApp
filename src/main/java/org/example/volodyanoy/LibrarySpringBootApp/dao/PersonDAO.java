@@ -1,9 +1,6 @@
-package org.example.volodyanoy.dao;
+package org.example.volodyanoy.LibrarySpringBootApp.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.persistence.EntityManager;
 
 
 @Component

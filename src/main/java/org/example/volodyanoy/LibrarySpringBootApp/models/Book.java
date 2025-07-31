@@ -1,13 +1,12 @@
-package org.example.volodyanoy.models;
+package org.example.volodyanoy.LibrarySpringBootApp.models;
 
 
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 @Entity
 @Table(name = "Book")

@@ -1,20 +1,19 @@
-package org.example.volodyanoy.controllers;
+package org.example.volodyanoy.LibrarySpringBootApp.controllers;
 
-import org.example.volodyanoy.dao.BookDAO;
-import org.example.volodyanoy.dao.PersonDAO;
-import org.example.volodyanoy.models.Book;
-import org.example.volodyanoy.models.Person;
-import org.example.volodyanoy.services.BooksService;
-import org.example.volodyanoy.services.PeopleService;
-import org.example.volodyanoy.util.BookValidator;
+import org.example.volodyanoy.LibrarySpringBootApp.dao.BookDAO;
+import org.example.volodyanoy.LibrarySpringBootApp.dao.PersonDAO;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Book;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Person;
+import org.example.volodyanoy.LibrarySpringBootApp.services.BooksService;
+import org.example.volodyanoy.LibrarySpringBootApp.services.PeopleService;
+import org.example.volodyanoy.LibrarySpringBootApp.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/books")

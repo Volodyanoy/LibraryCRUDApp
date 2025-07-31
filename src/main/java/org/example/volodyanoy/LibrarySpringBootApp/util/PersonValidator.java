@@ -1,7 +1,7 @@
-package org.example.volodyanoy.util;
+package org.example.volodyanoy.LibrarySpringBootApp.util;
 
-import org.example.volodyanoy.dao.PersonDAO;
-import org.example.volodyanoy.models.Person;
+import org.example.volodyanoy.LibrarySpringBootApp.dao.PersonDAO;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

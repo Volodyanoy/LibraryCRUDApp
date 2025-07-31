@@ -1,17 +1,17 @@
-package org.example.volodyanoy.controllers;
+package org.example.volodyanoy.LibrarySpringBootApp.controllers;
 
-import org.example.volodyanoy.dao.BookDAO;
-import org.example.volodyanoy.dao.PersonDAO;
-import org.example.volodyanoy.models.Person;
-import org.example.volodyanoy.services.PeopleService;
-import org.example.volodyanoy.util.PersonValidator;
+import org.example.volodyanoy.LibrarySpringBootApp.dao.BookDAO;
+import org.example.volodyanoy.LibrarySpringBootApp.dao.PersonDAO;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Person;
+import org.example.volodyanoy.LibrarySpringBootApp.services.PeopleService;
+import org.example.volodyanoy.LibrarySpringBootApp.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/people")

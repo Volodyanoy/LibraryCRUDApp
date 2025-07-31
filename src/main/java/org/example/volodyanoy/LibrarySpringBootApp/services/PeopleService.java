@@ -1,8 +1,8 @@
-package org.example.volodyanoy.services;
+package org.example.volodyanoy.LibrarySpringBootApp.services;
 
-import org.example.volodyanoy.models.Book;
-import org.example.volodyanoy.models.Person;
-import org.example.volodyanoy.repositories.PeopleRepository;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Book;
+import org.example.volodyanoy.LibrarySpringBootApp.models.Person;
+import org.example.volodyanoy.LibrarySpringBootApp.repositories.PeopleRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
